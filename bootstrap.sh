@@ -24,18 +24,28 @@ npm init -y > /dev/null
 
 
 # Take input from user for what dependecies to install
-echo "⚡ Enter the dependencies you want to install (separated by spaces):"
 echo "👉 Example: express dotenv mongoose cors"
-read -r -a DEPENDENCIES
+read -p "⚡ Enter the dependencies you want to install (separated by spaces): " -r -a DEPENDENCIES
+
+read -p "⚡ Enter the dev dependencies you want to install (separated by spaces): " -r -a DEV_DEPENDENCIES
 
 if [ ${#DEPENDENCIES[@]} -eq 0 ]; then
-    echo "ℹ️ No dependencies specified. Skipping..."
-
+    echo "ℹ️ No regular dependencies specified. Skipping..."
 else 
     echo "📦 Installing: ${DEPENDENCIES[*]}..."
-    npm i "${DEPENDENCIES[@]}" > /dev/null
-
-    echo "Successfully installed ${DEPENDENCIES[*]}"
+    npm install "${DEPENDENCIES[@]}" > /dev/null
+    echo "Installed ${DEPENDENCIES[*]}..."
 fi
 
-echo "Project setup successully done!"
+# 3. Handle Dev Dependencies Independent of Regular Dependencies
+if [ ${#DEV_DEPENDENCIES[@]} -eq 0 ]; then
+    echo "ℹ️ No dev dependencies specified. Skipping..."
+else
+    echo "🛠️ Installing dev dependencies: ${DEV_DEPENDENCIES[*]}..."
+    npm install --save-dev "${DEV_DEPENDENCIES[@]}" > /dev/null
+    echo "Installed ${DEV_DEPENDENCIES[*]}..."
+fi
+
+echo "--------------------------------------------------------"
+echo "✅ Dependency setup phase complete!"
+echo "--------------------------------------------------------"
