@@ -58,3 +58,8 @@ fi
 echo "--------------------------------------------------------"
 echo "✅ Dependency setup phase complete!"
 echo "--------------------------------------------------------"
+
+NODE_PROJECT_PATH=$(cygpath -w "$(pwd)")
+NODE_TOOLS_PATH=$(cygpath -w "$SCRIPT_DIR")
+
+node "$SCRIPTS_DIR/manage-template/template-builder.mjs" "$NODE_PROJECT_PATH" "$NODE_TOOLS_PATH"
