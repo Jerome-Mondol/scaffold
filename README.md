@@ -12,8 +12,7 @@
 ```bash
 git clone https://github.com/Jerome-Mondol/scaffold
 cd scaffold
-npm install
-bash installer.sh
+./installer.sh
 source ~/.bashrc
 ```
 

@@ -2,7 +2,6 @@
 
 # Safety switch
 set -e
-set -x
 
 echo "Beginning Global Installation of scaffold CLI..."
 
