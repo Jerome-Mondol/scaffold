@@ -5,7 +5,7 @@ export const startSelectionMenu = async (items, onSelectCallback) => {
         {
             type: 'select',
             name: 'selectedTemplate',
-            message: 'Select a backend architecture tempalte configuration',
+            message: '🧩 Select a backend architecture template',
             choices: items.map((file) => ({
                 name: file.split('.')[0],
                 value: file

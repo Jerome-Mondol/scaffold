@@ -15,7 +15,7 @@ try {
     templates = fs.readdirSync(templatesFolderPath);
     // console.log(files);
 } catch(err) {
-    console.log("❌ Failed to read templates folder: ", err.message);
+    console.log("⛔ Failed to read templates folder: ", err.message);
 }
 
 const targetDir = process.cwd();
@@ -27,7 +27,7 @@ const buildTemplate = (chosenFile) => {
         const yamlFileContent = fs.readFileSync(yamlFilePath, 'utf8');
         const parsedYAML = YAML.parse(yamlFileContent);
 
-        console.log(`\n🏗️  Building your backend layout using: ${chosenFile}...`);
+        console.log(`🧱 Building your backend layout using: ${chosenFile}...`);
 
         // Create a small worker function that can dive deep into nested objects
         const createNodes = (currentFolder, structureData) => {
@@ -67,10 +67,10 @@ const buildTemplate = (chosenFile) => {
         createNodes(targetDir, parsedYAML.structure);
 
         // Move this OUTSIDE the loop so it only prints once at the very end!
-        console.log("\n✅ Done! Your deep project skeleton is fully built.\n");
+        console.log("✅ Done! Your project structure is ready.");
 
     } catch(err) {
-        console.log("❌ Error while building the template:", err.message);
+        console.log("⛔ Error while building the template:", err.message);
     }
 }
 

@@ -4,7 +4,7 @@ import path from 'path'
 const targetDir = process.argv[2];
 
 if(!targetDir) {
-    console.error("❌ Error: No target directory provided.");
+    console.error("⛔ Error: No target directory provided.");
     process.exit(1);
 }
 
@@ -22,8 +22,8 @@ try {
     }
 
     fs.writeFileSync(packageJsonPath, JSON.stringify(pkg, null, 2), 'utf8');
-    console.log(`⚙️  package.json locked to ES Module ("type": "module")`);
+    console.log(`✨ package.json locked to ES Module ("type": "module")`);
 } catch(err) {
-    console.log("❌ Failed to modify package.json:", err.message);
+    console.log("⛔ Failed to modify package.json:", err.message);
     process.exit(1);
 }

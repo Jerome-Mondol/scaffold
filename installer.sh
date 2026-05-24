@@ -3,7 +3,7 @@
 # Safety switch
 set -e
 
-echo "Beginning Global Installation of scaffold CLI..."
+echo "🧩 Beginning global installation of scaffold CLI..."
 
 REPO_PATH=$(pwd)
 
@@ -14,18 +14,18 @@ chmod +x "$SCRIPT_PATH"
 PROFILE_FILE="$HOME/.bashrc"
 
 if [ ! -f "$PROFILE_FILE" ]; then
-    echo "📄 Creating missing .bashrc file in your Windows User profile..."
+    echo "📝 Creating missing .bashrc file in your Windows profile..."
     touch "$PROFILE_FILE"
 fi
 
 if grep -q "alias scaffold=" "$PROFILE_FILE" 2>/dev/null; then 
-    echo "The scaffold command is already configured in your profile"
+    echo "ℹ️  The scaffold command is already configured in your profile"
 else 
     echo "" >> "$PROFILE_FILE"
     echo "# Scaffold CLI global command" >> "$PROFILE_FILE"
     echo "alias scaffold=\"bash '$SCRIPT_PATH'\"" >> "$PROFILE_FILE" 
 
-    echo "🚀 Global alias successfully injected into $PROFILE_FILE!"
+    echo "✨ Global alias injected into $PROFILE_FILE"
 fi
 
 BOOT_PROFILE="$HOME/.bash_profile"
@@ -35,5 +35,5 @@ fi
 
 echo "--------------------------------------------------------"
 echo "✅ Installation complete!"
-echo "👉 IMPORTANT: Run 'source ~/.bashrc' or restart Git Bash to activate the command."
+echo "➡️  Run 'source ~/.bashrc' or restart Git Bash to activate the command."
 echo "--------------------------------------------------------"

@@ -7,12 +7,12 @@ set -e
 PROJECT_NAME=$1
 
 if [ -z "$PROJECT_NAME" ]; then
-    echo "❌ Error: Please provide a project name!"
+    echo "⛔ Error: Please provide a project name!"
     echo "Usage: scaffold <project-name>"
     exit 1
 fi
 
-echo "🚀 Initializing project scaffolding for: $PROJECT_NAME"
+echo "✨ Initializing project scaffolding for: $PROJECT_NAME"
 
 # Initialize project
 mkdir "$PROJECT_NAME"
@@ -30,29 +30,29 @@ node "$SCRIPTS_DIR/modify-package.mjs" "$NEW_PROJECT_PATH"
 
 
 # Take input from user for what dependecies to install
-echo "👉 Example: express dotenv mongoose cors"
-read -p "⚡ Enter the dependencies you want to install (separated by spaces): " -r -a DEPENDENCIES
+echo "💡 Example: express dotenv mongoose cors"
+read -p "➜ Enter the dependencies you want to install (space-separated): " -r -a DEPENDENCIES
 
-read -p "⚡ Enter the dev dependencies you want to install (separated by spaces): " -r -a DEV_DEPENDENCIES
+read -p "➜ Enter the dev dependencies you want to install (space-separated): " -r -a DEV_DEPENDENCIES
 
 
 
 # install the dependencies 
 if [ ${#DEPENDENCIES[@]} -eq 0 ]; then
-    echo "ℹ️ No regular dependencies specified. Skipping..."
+    echo "ℹ️  No regular dependencies specified. Skipping..."
 else 
     echo "📦 Installing: ${DEPENDENCIES[*]}..."
     npm install "${DEPENDENCIES[@]}" > /dev/null
-    echo "Installed ${DEPENDENCIES[*]}..."
+    echo "✅ Installed ${DEPENDENCIES[*]}"
 fi
 
 # install the dev dependencies 
 if [ ${#DEV_DEPENDENCIES[@]} -eq 0 ]; then
-    echo "ℹ️ No dev dependencies specified. Skipping..."
+    echo "ℹ️  No dev dependencies specified. Skipping..."
 else
-    echo "🛠️ Installing dev dependencies: ${DEV_DEPENDENCIES[*]}..."
+    echo "🧰 Installing dev dependencies: ${DEV_DEPENDENCIES[*]}..."
     npm install --save-dev "${DEV_DEPENDENCIES[@]}" > /dev/null
-    echo "Installed ${DEV_DEPENDENCIES[*]}..."
+    echo "✅ Installed ${DEV_DEPENDENCIES[*]}"
 fi
 
 echo "--------------------------------------------------------"
