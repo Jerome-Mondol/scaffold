@@ -1,0 +1,26 @@
+structure:
+  src:
+    config:
+      db.js: ""          # Database connections (Mongoose, PostgreSQL, etc.)
+      redis.js: ""       # Caching layer configurations (Optional but standard)
+    models:              # The "M" in MVC (Data schemas, validation blueprints)
+      user.model.js: ""
+      post.model.js: ""
+    controllers:         # The "C" in MVC (Handles requests, interacts with models)
+      user.controller.js: ""
+      auth.controller.js: ""
+    routes:              # Express route definitions pointing to controllers
+      auth.routes.js: ""
+      user.routes.js: ""
+      index.routes.js: "" # Master router aggregator
+    middlewares:         # Security guards, request filtering, error interception
+      auth.middleware.js: ""
+      error.middleware.js: ""
+      rateLimiter.js: ""
+    utils:               # Helper methods (Hashing tokens, custom formatters)
+      helpers.js: ""
+    index.js: ""         # Server ignition point (App listening, global plugins)
+  tests: {}              # Backend unit and integration test workspace
+  .gitignore: ""
+  .env: ""
+  README.md: ""
