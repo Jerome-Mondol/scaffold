@@ -23,8 +23,6 @@ echo "📦 Initializing npm..."
 npm init -y > /dev/null
 
 # change the type in the package.json file
-
-
 NEW_PROJECT_PATH="$(pwd)"
 SCRIPT_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 SCRIPTS_DIR="$SCRIPT_DIR/scripts"
@@ -37,6 +35,9 @@ read -p "⚡ Enter the dependencies you want to install (separated by spaces): "
 
 read -p "⚡ Enter the dev dependencies you want to install (separated by spaces): " -r -a DEV_DEPENDENCIES
 
+
+
+# install the dependencies 
 if [ ${#DEPENDENCIES[@]} -eq 0 ]; then
     echo "ℹ️ No regular dependencies specified. Skipping..."
 else 
@@ -45,7 +46,7 @@ else
     echo "Installed ${DEPENDENCIES[*]}..."
 fi
 
-# 3. Handle Dev Dependencies Independent of Regular Dependencies
+# install the dev dependencies 
 if [ ${#DEV_DEPENDENCIES[@]} -eq 0 ]; then
     echo "ℹ️ No dev dependencies specified. Skipping..."
 else
