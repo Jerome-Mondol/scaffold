@@ -22,6 +22,14 @@ cd "$PROJECT_NAME"
 echo "📦 Initializing npm..."
 npm init -y > /dev/null
 
+# change the type in the package.json file
+
+
+NEW_PROJECT_PATH="$(pwd)"
+SCRIPT_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+SCRIPTS_DIR="$SCRIPT_DIR/scripts"
+node "$SCRIPTS_DIR/modify-package.mjs" "$NEW_PROJECT_PATH"
+
 
 # Take input from user for what dependecies to install
 echo "👉 Example: express dotenv mongoose cors"
