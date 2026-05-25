@@ -20,6 +20,7 @@ Create a clean Node.js project in minutes. `scaffold` generates a folder, runs `
 git clone https://github.com/Jerome-Mondol/scaffold
 cd scaffold
 ./installer.sh
+npm i
 source ~/.bashrc
 ```
 
