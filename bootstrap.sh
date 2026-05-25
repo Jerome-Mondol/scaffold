@@ -6,11 +6,25 @@ set -e
 # Grab the project name passed by the user
 PROJECT_NAME=$1
 
+# Check if any project name is passed
 if [ -z "$PROJECT_NAME" ]; then
     echo "⛔ Error: Please provide a project name!"
     echo "Usage: scaffold <project-name>"
     exit 1
 fi
+
+SCRIPT_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+CHECK_FILE_NAME="pre-flight-windows.exe"
+CHECK_FILE_PATH="$SCRIPT_FILE/tools/checkers/$CHECK_FILE_NAME"
+
+
+# Run the pre flight check before anything 
+"./$CHECK_FILE_PATH"
+
+# install the dependecies for this project 
+npm i > /dev/null
+
+
 
 echo "✨ Initializing project scaffolding for: $PROJECT_NAME"
 
@@ -24,15 +38,13 @@ npm init -y > /dev/null
 
 # change the type in the package.json file
 NEW_PROJECT_PATH="$(pwd)"
-SCRIPT_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+
 SCRIPTS_DIR="$SCRIPT_DIR/scripts"
 node "$SCRIPTS_DIR/modify-package.mjs" "$NEW_PROJECT_PATH"
 
 
 # Take input from user for what dependecies to install
-echo "💡 Example: express dotenv mongoose cors"
 read -p "➜ Enter the dependencies you want to install (space-separated): " -r -a DEPENDENCIES
-
 read -p "➜ Enter the dev dependencies you want to install (space-separated): " -r -a DEV_DEPENDENCIES
 
 
