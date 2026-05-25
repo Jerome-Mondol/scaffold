@@ -2,7 +2,7 @@ import { fileURLToPath } from "node:url";
 import fs from 'fs'
 import YAML from 'yaml'; 
 import { startSelectionMenu } from "./ui.mjs";
-import path, { dirname, parse } from "node:path";
+import path, { dirname } from "node:path";
 
 const __filename = fileURLToPath(import.meta.url);
 const currentDir = dirname(__filename);
@@ -20,9 +20,17 @@ try {
 
 const targetDir = process.cwd();
 
+const checkIfFileIsYAML = (fileName) => {
+    const splitedFileName = fileName.split('.');
+    const extension = splitedFileName[splitedFileName.length - 1];
+
+    return extension === 'yaml' || extension === 'yml';
+}
+
 
 const buildTemplate = (chosenFile) => {
     try {
+        if(checkIfFileIsYAML(chosenFile)) {   
         const yamlFilePath = path.join(templatesFolderPath, chosenFile);
         const yamlFileContent = fs.readFileSync(yamlFilePath, 'utf8');
         const parsedYAML = YAML.parse(yamlFileContent);
@@ -68,7 +76,10 @@ const buildTemplate = (chosenFile) => {
 
         // Move this OUTSIDE the loop so it only prints once at the very end!
         console.log("✅ Done! Your project structure is ready.");
-
+        }
+        else {
+            console.log("⛔ Template file should have YAML or YML extension");
+        }
     } catch(err) {
         console.log("⛔ Error while building the template:", err.message);
     }
