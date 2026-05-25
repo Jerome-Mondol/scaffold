@@ -1,13 +1,20 @@
 # Scaffold CLI 🧱
 
-⚡️ Spin up a fresh Node.js project in seconds. `scaffold` creates the folder, runs npm init, switches to ESM, installs the deps you pick, and can generate a clean backend folder structure from a template.
+Create a clean Node.js project in minutes. `scaffold` generates a folder, runs `npm init`, switches the package metadata to ESM defaults, installs the dependencies you choose, and builds a backend structure from a template.
 
-## Requirements ✅
+## What It Does
 
-- Bash-based shell on Windows (Git Bash recommended).
-- Node.js (includes npm) on PATH.
+- Runs environment checks for your OS before any work starts.
+- Creates a new project directory and bootstraps `package.json`.
+- Installs dependencies and dev dependencies interactively.
+- Generates folders and files from a YAML template.
 
-## Installation 🛠️
+## Requirements
+
+- Bash shell (Git Bash on Windows is recommended)
+- Node.js and npm available on PATH
+
+## Install
 
 ```bash
 git clone https://github.com/Jerome-Mondol/scaffold
@@ -16,17 +23,19 @@ cd scaffold
 source ~/.bashrc
 ```
 
-## Usage 🚀
+## Use
 
 ```bash
 scaffold my-app
 ```
 
-You will be prompted for dependencies and dev dependencies (space-separated), then you can pick a template to generate the starter structure.
+You'll be prompted for production and development dependencies (space-separated). After that, select a template to generate the starter structure.
 
-## Default Template (Quick View) 📁
+## Templates
 
-Creates a clean backend layout like:
+Templates live in [templates/](templates/). Each file is a YAML blueprint.
+
+### Default Template (Quick View)
 
 ```
 src/ (config, controllers, models, routes, middlewares, utils, index.js)
@@ -36,11 +45,27 @@ tests/
 README.md
 ```
 
-## Docs 📚
+### Custom Templates
 
-- Custom templates guide: [docs/markdowns/custom-template.md](docs/markdowns/custom-template.md)
+Follow the rules in [docs/markdowns/custom-template.md](docs/markdowns/custom-template.md) to build your own structure and drop it into [templates/](templates/).
 
-## Notes 💡
+## Pre-flight Checks
+
+`scaffold` runs a small OS-specific binary before it starts:
+
+- Windows: `tools/checkers/pre-flight-windows.exe`
+- Linux: `tools/checkers/pre-flight-linux`
+- macOS Intel: `tools/checkers/pre-flight-mac-intel`
+- macOS ARM: `tools/checkers/pre-flight-mac-arm`
+
+If you need to rebuild these binaries:
+
+```bash
+./build.sh
+```
+
+## Troubleshooting
 
 - If `scaffold` is not found, restart Git Bash or run `source ~/.bashrc` again.
 - If you move the repo, rerun `installer.sh` so the alias points to the new path.
+- If pre-flight checks fail, rebuild binaries with `./build.sh` and try again.
