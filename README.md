@@ -23,6 +23,15 @@ cd scaffold
 source ~/.bashrc
 ```
 
+## Uninstall
+
+Run the uninstaller to remove the `scaffold` alias from your shell profiles:
+
+```bash
+./uninstall.sh
+source ~/.bashrc
+```
+
 ## Use
 
 ```bash
