@@ -66,13 +66,16 @@ run_preflight_checks() {
     echo "--------------------------------------------------------"
 }
 
+
+
+
 initialize_project_workspace() {
-    echo -e "${CYAN}⚙️  [SYSTEM] Installing dependencies for scaffold utility internal runtime...${RC}"
-    npm install --no-audit --no-fund > /dev/null
+    
 
     echo -e "${GREEN}🚀 [LAUNCH] Initializing workspace scaffolding target: $PROJECT_NAME${RC}"
     mkdir -p "$PROJECT_NAME"
     cd "$PROJECT_NAME"
+
 
     echo -e "ℹ️  [INFO] Generating clean 'package.json' manifest..."
     npm init -y > /dev/null
@@ -82,6 +85,8 @@ initialize_project_workspace() {
     new_project_path="$(pwd)"
     node "$SCRIPTS_DIR/modify-package.mjs" "$new_project_path"
 }
+
+
 
 deploy_dependencies() {
     # Local arrays explicitly declared inside function scope

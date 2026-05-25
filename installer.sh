@@ -1,6 +1,4 @@
 #!/bin/bash
-
-# Safety switch
 set -e
 
 echo "🧩 Beginning global installation of scaffold CLI..."
@@ -32,6 +30,7 @@ BOOT_PROFILE="$HOME/.bash_profile"
 if [ ! -f "$BOOT_PROFILE" ] || ! grep -q "source ~/.bashrc" "$BOOT_PROFILE" 2>/dev/null; then
     echo "source ~/.bashrc" >> "$BOOT_PROFILE"
 fi
+
 
 echo "--------------------------------------------------------"
 echo "✅ Installation complete!"
